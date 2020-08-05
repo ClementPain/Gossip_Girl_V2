@@ -2,34 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Créer un potin</title>
+    <title>Créer un commentaire</title>
   </head>
  
   <body>
     <div class="row justify-content-md-center">
       <div class="col mb-4 text-center">
 
-        <h1>Crée un potin !</h1>
+        <h1>Crée un commentaire pour le potin : <%= @new_comment.gossip.title%> </h1>
         <p>Balance ton potin via le formulaire ci-dessous</p>
         <br/>
 
-        <%= form_for url_for(action: 'create'), method: "post" do %>
+        <%= form_tag url_for(action: 'create'), method: "post" do %>
           
           <%= label_tag 'Saisis ici ton pseudo : ' %>
           <%= text_field_tag :user_pseudo %>
           <br />
           
-          <%= label_tag 'Renseigne un titre : ' %>
-          <%= text_field_tag :gossip_title %>
+          <%= label_tag 'Renseigne ton commentaire : ' %>
+          <%= text_area_tag :comment_content %>
           <br/>
 
-          <%= label_tag 'Balance ton potin : ' %>
-          <%= text_area_tag :gossip_content %>
-          <br/>
-
-          <br/>
+          <br />
           
-          <%= submit_tag("Create Gossip", :class =>"btn btn-primary") %>
+          <%= submit_tag("Publier le commentaire", :class =>"btn btn-primary") %>
 
         <% end %>
       </div>

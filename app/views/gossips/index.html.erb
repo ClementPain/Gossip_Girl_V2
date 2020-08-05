@@ -7,12 +7,23 @@
 
     
   <body>
+  
+  <main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron" style="background-image: url(<%= 'https://debuglies.com/wp-content/uploads/2019/05/gossip.jpg' %>)">
+    <div class="container">
+      <h1 class="display-3">Welcome To The Best & Famous GOSSIP PROJECT!</h1>
+      <p>Ton co-moussaillon a des qualités exceptionnelles, tu veux remercier une personne de ta promo ? Crée un potin que tout le monde pourra consulter.</p>
+      <p><%= button_to "Crée un potin", new_gossip_path, class:"btn btn-primary btn-lg", :method => :get %></p>
+    </div>
+  </div>
+
   <center>
-  <h1 style="font-size:80px;" >Le super site de potins !</h1>
+  <h1 style="font-size:40px;" >Tous les potins </h1>
   </br>
 
-  <h2> <%= link_to "Crée un potin !", new_gossip_path %> </h2>
-  </br>
+  
 
   
   <% @list_gossips.each do |gossip| %>
@@ -24,6 +35,11 @@
         <% end %>	
         </div></br>
   <% end %>
+
+  
+
+  <!-- <div class="container">
+    <!-- Example row of columns --> 
 
   </body>
 </center>  

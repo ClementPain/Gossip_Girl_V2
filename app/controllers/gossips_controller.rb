@@ -10,7 +10,13 @@ class GossipsController < ApplicationController
   end
 
   def show
-  	 @gossip_searched = Gossip.find(params[:id])
+     @gossip_searched = Gossip.find(params[:id])
+     @comments_linked = []
+     Comment.all.each do |comment|
+       if @gossip_searched.id == comment.gossip_id
+        @comments_linked << comment
+       end
+     end
   end
 
   def new
@@ -40,11 +46,27 @@ class GossipsController < ApplicationController
   end
 
   def edit
+    @new_gossip = Gossip.find(params[:id])
   end
 
   def update
+    @new_gossip = Gossip.new('user_id' => User.find_by(pseudo: params[:user_pseudo]).id,
+                     'title' => params[:gossip_title],
+                     'content' => params[:gossip_content])
+    #post_params = params.require(:gossip).permit(:gossip_title, :gossip_content)
+    if @new_gossip.update(post_params)
+      redirect_to new_gossip_path
+    else
+      render :edit
+    end
+  end
+
+  def post_params
+    post_params = params.require(:gossip).permit(:gossip_title, :gossip_content)
   end
 
   def destroy
+  
+  
   end
 end

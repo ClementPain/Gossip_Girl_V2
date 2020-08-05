@@ -6,7 +6,8 @@
     </head>
 
     <body>
-    <div class="card" style="width: 18rem;">
+    <center>
+    <div class="card mb-4 box-shadow" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Gossip Profil <%=@author_searched.pseudo%></h5>
             
@@ -14,5 +15,13 @@
             <p>Nom : <%=@author_searched.last_name %></p>
             <p>Description : <%= @author_searched.description %></p>
             <p>Email : <%= @author_searched.email %></p>
+            <p>Ville :
+                <%= link_to city_path(@author_searched.city_id) do %> 
+                    <%= @author_searched.city.name %>
+                <% end %>
+            </p>
         </div>
     </div>
+    </center>
+    </body>
+</html>

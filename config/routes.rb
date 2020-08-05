@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get '/contact', to: 'gossips#contact'
 
   resources :gossips do
-  	resources :authors, only: [:show]
+    resources :authors, only: [:show]
+    resources :comments
   end
+
+  resources :cities, only: [:show]
+
+  
 end

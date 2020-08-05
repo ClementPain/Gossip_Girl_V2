@@ -8,12 +8,11 @@
     <body>
 
        
-
+    <div class="row justify-content-md-center">
     <div class="card" style="width: 18rem;">
        <div class="card-body">
-         <h5 class="card-title">Potins</h5>
-         <h6 class="card-subtitle mb-2 text-muted"><h1>Voici la page du potin n°<%= @gossip_searched.id %></h1></h6>
-         <p class="card-text"><p> Potin <%= @gossip_searched.title%> </p>
+         <h6 class="card-title mb-2 text-muted"><h1>Voici la page du potin n°<%= @gossip_searched.id %></h1></h6>
+         <p class="card-text"><p> Titre : <%= @gossip_searched.title%> </p>
                   
           <p>Son auteur :
             <%= link_to("#{@gossip_searched.id}/authors/#{@gossip_searched.user_id}") do %> 
@@ -24,8 +23,31 @@
          <p>Le contenu du potin : <%= @gossip_searched.content %></p>
          <p>Créé le : <%= @gossip_searched.created_at %></p>
 
+         <p>Ville :
+         <%= link_to city_path(@gossip_searched.user.city_id) do %> 
+            <%= @gossip_searched.user.city.name %>
+         <% end %> </p>
+
         </div>
-     </div>     
-    
+     </div>
+     </br>
+    </div>
+
+    <div class="row justify-content-md-center">
+      <a href="<%= new_gossip_comment_path(params[:id]) %>" class ="btn btn-primary">Commenter</a>     
+    </div>
+      </br>
+    <div class="row justify-content-md-center">
+      <a href="<%= new_gossip_comment_path(params[:id]) %>" class ="btn btn-danger">Supprimer le potin</a>     
+    </div>
+
+
+
+    <% @comments_linked.each do |comment| %>
+      <div class="row justify-content-md-center">
+        <p> <%= comment.user.pseudo %> : <%= comment.content %>
+        </p>
+      </div>
+    <% end %>
     </body>
 </html>
