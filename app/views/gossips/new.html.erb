@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Créer un potin</title>
+  </head>
+  <body>
+    <h1>Crée un potin !</h1>
+    <p>Balance ton potin via le formulaire ci-dessous</p>
+
+    <%= form_tag url_for(action: 'create'), method: "post" , style: "display: inline" do %>
+      
+      <%= label_tag 'Saisi ici ton pseudo : ' %>
+      <%= text_field_tag :user_pseudo %>
+      <br />
+      
+      <%= label_tag 'Renseigne un titre : ' %>
+      <%= text_field_tag :gossip_title %>
+      <br/>
+
+      <%= label_tag 'Balance ton potin : ' %>
+      <%= text_area_tag :gossip_content %>
+      <br/>
+      
+      <%= submit_tag "Create Gossip" %>
+
+    <% end %>
+  </body>
+</html>

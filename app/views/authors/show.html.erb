@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>The Gossip Project - Author</title>
+    </head>
+
+    <body>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Gossip Profil <%=@author_searched.pseudo%></h5>
+            
+            <p>Prénom : <%=@author_searched.first_name %></p>
+            <p>Nom : <%=@author_searched.last_name %></p>
+            <p>Description : <%= @author_searched.description %></p>
+            <p>Email : <%= @author_searched.email %></p>
+        </div>
+    </div>
