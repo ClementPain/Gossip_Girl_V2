@@ -4,6 +4,6 @@ class AddPseudoColumnToUser < ActiveRecord::Migration[5.2]
   end
 
   def self.down
-  	remove_column users, :pseudo, :string
+  	remove_column :users, :pseudo, :string
   end
 end

@@ -8,7 +8,7 @@
     <h1>Crée un potin !</h1>
     <p>Balance ton potin via le formulaire ci-dessous</p>
 
-    <%= form_tag url_for(action: 'create'), method: "post" , style: "display: inline" do %>
+    <%= form_tag url_for(action: 'create'), method: "post", style: "display: inline" do %>
       
       <%= label_tag 'Saisi ici ton pseudo : ' %>
       <%= text_field_tag :user_pseudo %>
