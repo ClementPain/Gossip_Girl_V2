@@ -16,8 +16,10 @@
             <p>Description : <%= @user_searched.description %></p>
             <p>Email : <%= @user_searched.email %></p>
             <p>Ville :
-                <%= link_to city_path(@user_searched.city_id) do %> 
-                    <%= @user_searched.city.name %>
+                <% if !@user_searched.city_id.nil? %>
+                    <%= link_to city_path(@user_searched.city_id) do %> 
+                        <%= @user_searched.city.name %>
+                    <% end %>
                 <% end %>
             </p>
         </div>
