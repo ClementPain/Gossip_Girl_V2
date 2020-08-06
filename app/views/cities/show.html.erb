@@ -9,6 +9,7 @@
     <center>
             <h2 text-center>Potins de <%=@city_searched.name%></h2>
             <p>Zip Code : <%=@city_searched.zip_code %></p> </br>
+            <p>Nombre de potins : <%= @city_searched.gossips.count %>
     
     <% @list_gossips_this_city.each do |gossip| %>
         <div class="card mb-4 box-shadow" style="width: 18rem;">

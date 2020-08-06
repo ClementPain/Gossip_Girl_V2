@@ -4,11 +4,15 @@ Rails.application.routes.draw do
   get '/contact', to: 'gossips#contact'
 
   resources :gossips do
-    resources :authors, only: [:show]
+    resources :users, only: [:show]
     resources :comments
+    resources :likes, only: [:update]
   end
+  
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy, :show]
 
+  post '/gossips/:id/edit', to: 'gossips#edit'
   resources :cities, only: [:show]
 
-  
 end

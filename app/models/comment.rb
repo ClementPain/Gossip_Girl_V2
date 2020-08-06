@@ -4,4 +4,6 @@ class Comment < ApplicationRecord
 	has_many :likes, as: :element_liked
 	has_many :bis_comments, class_name: "Comment", foreign_key: "main_comment_id"
 	belongs_to :main_comment, class_name: "Comment", optional: true
+
+	validates :content, presence: true
 end

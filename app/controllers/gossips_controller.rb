@@ -1,4 +1,7 @@
 class GossipsController < ApplicationController
+  # before_action :authenticate_user  , only: [:index, :team, :contact, :show]
+
+  
 	def team
   end
 
@@ -20,53 +23,43 @@ class GossipsController < ApplicationController
   end
 
   def new
-  	@new_gossip = Gossip.new
+    unless current_user
+      redirect_to gossips_path, alert: "Please log in."
+    end
+  	@gossip = Gossip.new
   end
 
-  def create
-
-    if !User.find_by(pseudo: params[:user_pseudo]).nil?
-      @new_gossip = Gossip.new('user_id' => User.find_by(pseudo: params[:user_pseudo]).id,
-                     'title' => params[:gossip_title],
-                     'content' => params[:gossip_content])
+  def create 
+    @gossip = Gossip.new('title' => params[:gossip_title], 'content' => params[:gossip_content])
     
-      if @new_gossip.save
-        redirect_to gossips_path, notice: "Le potin #{@new_gossip.title} a bien été créé"
-        puts 'Le potin a été créé !'
-        
-      else
-        redirect_to new_gossip_path, alert: "Certaines informations sont incorrectes : le titre doit faire entre 3 et 14 caractères"
-      end
-
+    @gossip.user = User.find_by(id: session[:user_id])
+                      
+    if @gossip.save
+      redirect_to gossips_path, notice: "Le potin #{@gossip.title} a bien été créé !"
     else
-      redirect_to new_gossip_path, alert: "Le pseudo saisi n\'existe pas"
-
-      puts 'Le pseudo saisi n\'existe pas'
-    end 
+      redirect_to new_gossip_path, alert: "Certaines informations sont incorrectes : le titre doit faire entre 3 et 30 caractères"
+    end    
   end
 
   def edit
-    @new_gossip = Gossip.find(params[:id])
+    @gossip = Gossip.find(params[:id])
   end
 
   def update
-    @new_gossip = Gossip.new('user_id' => User.find_by(pseudo: params[:user_pseudo]).id,
-                     'title' => params[:gossip_title],
-                     'content' => params[:gossip_content])
-    #post_params = params.require(:gossip).permit(:gossip_title, :gossip_content)
-    if @new_gossip.update(post_params)
-      redirect_to new_gossip_path
+    @gossip = Gossip.find(params[:id])
+    if @gossip.update('title'=> params[:gossip_title],'content'=> params[:gossip_content])
+      redirect_to gossips_path , notice: "Ton gossip a bien été mis à jour"
     else
-      render :edit
+      redirect_to edit_gossip_path
     end
   end
 
-  def post_params
-    post_params = params.require(:gossip).permit(:gossip_title, :gossip_content)
+  def destroy
+    @gossip = Gossip.find(params[:id])
+    @gossip.destroy
+    redirect_to gossips_path, notice: "Ton gossip a bien été supprimé"
   end
 
-  def destroy
-  
-  
+  def like
   end
 end

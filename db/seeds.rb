@@ -22,17 +22,14 @@ Like.destroy_all
 	City.create(name:Faker::Address.city, zip_code:Faker::Address.zip)
 end
 
-#créer l'utilisateur anonyme
-User.create(first_name:"Mysterieux", last_name:"Enigmatique", age:"??", email:"inconnu@nebulleux.fr", pseudo: "Anonymous", description: "sybillin", city_id:rand(City.first.id..City.last.id))
-
-# créer 10 utilisateurs rattachés à une ville
+# créer 15 utilisateurs rattachés à une ville
 15.times do
-	User.create(pseudo:Faker::Games::Pokemon.name, first_name:Faker::Name.first_name, last_name:Faker::Name.last_name, description:Faker::Movies::Ghostbusters.quote, email:Faker::Internet.email, age:rand(10..100), city_id:rand(City.first.id..City.last.id))
+	User.create(pseudo:Faker::Games::Pokemon.name, first_name:Faker::Name.first_name, last_name:Faker::Name.last_name, description:Faker::Movies::Ghostbusters.quote, email:Faker::Internet.email, age:rand(10..100), city_id:rand(City.first.id..City.last.id), password:Faker::Creature::Animal.name)
 end
 
 # créer 20 potins rattachés à un utilisateur
 20.times do
-	Gossip.create(title:Faker::Book.title, content:Faker::Movies::HarryPotter.quote, user_id:rand((User.first.id + 1)..User.last.id))
+	Gossip.create(title:Faker::Book.title, content:Faker::Movies::HarryPotter.quote, user_id:rand(User.first.id..User.last.id))
 end
 
 # créer 10 tags

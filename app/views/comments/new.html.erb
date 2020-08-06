@@ -15,9 +15,6 @@
 
         <%= form_tag url_for(action: 'create'), method: "post" do %>
           
-          <%= label_tag 'Saisis ici ton pseudo : ' %>
-          <%= text_field_tag :user_pseudo %>
-          <br />
           
           <%= label_tag 'Renseigne ton commentaire : ' %>
           <%= text_area_tag :comment_content %>

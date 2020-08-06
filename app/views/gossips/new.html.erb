@@ -13,11 +13,7 @@
         <p>Balance ton potin via le formulaire ci-dessous</p>
         <br/>
 
-        <%= form_for url_for(action: 'create'), method: "post" do %>
-          
-          <%= label_tag 'Saisis ici ton pseudo : ' %>
-          <%= text_field_tag :user_pseudo %>
-          <br />
+        <%= form_tag url_for(action: 'create'), method: "post" do %>
           
           <%= label_tag 'Renseigne un titre : ' %>
           <%= text_field_tag :gossip_title %>
