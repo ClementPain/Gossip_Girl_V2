@@ -1,4 +1,4 @@
-s# The Gossip Project : l'application qui déchire!
+# The Gossip Project : l'application qui déchire!
 
 Bonjour,
 

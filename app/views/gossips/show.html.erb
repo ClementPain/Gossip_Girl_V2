@@ -35,9 +35,9 @@
       <p><%= @gossip_searched.likes.count %> <%= (@gossip_searched.likes.count) == 1 ? 'Like' : 'Likes'%> 
         <% pre_like = @gossip_searched.likes.find { |like| like.user_id == current_user.id} %>
         <% if pre_like %>
-          <%= button_to 'Unlike', gossip_like_path(@gossip_searched, pre_like), method: :delete %>
+          <%= button_to 'Unlike', gossip_like_path(@gossip_searched, pre_like), method: :delete, class:"btn btn-danger" %>
         <% else %>
-          <%= button_to 'Like', gossip_likes_path(@gossip_searched), method: :post %>
+          <%= button_to 'Like', gossip_likes_path(@gossip_searched), method: :post, class:"btn btn-success" %>
         <% end %>
       </p>
     </div>
