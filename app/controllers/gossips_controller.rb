@@ -1,7 +1,7 @@
 class GossipsController < ApplicationController
-  # before_action :authenticate_user  , only: [:index, :team, :contact, :show]
-
   
+  before_action :authenticate_current_user, only: [:edit, :update, :destroy]
+
 	def team
   end
 
@@ -32,7 +32,7 @@ class GossipsController < ApplicationController
   def create 
     @gossip = Gossip.new('title' => params[:gossip_title], 'content' => params[:gossip_content])
     
-    @gossip.user = User.find_by(id: session[:user_id])
+    @gossip.user = current_user
                       
     if @gossip.save
       redirect_to gossips_path, notice: "Le potin #{@gossip.title} a bien été créé !"
@@ -60,6 +60,11 @@ class GossipsController < ApplicationController
     redirect_to gossips_path, notice: "Ton gossip a bien été supprimé"
   end
 
-  def like
+  private
+
+  def authenticate_current_user
+    unless current_user == Gossip.find(params[:id]).user
+      redirect_to gossip_path(params[:id]), alert: "Vous ne pouvez pas modifier ce potin"
+    end
   end
 end

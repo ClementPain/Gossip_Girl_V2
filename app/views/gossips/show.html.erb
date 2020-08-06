@@ -44,12 +44,11 @@
     </br>
     
     <% if @gossip_searched.user == current_user %>
-      <div class="row justify-content-md-center mb-2">
+      <div class="row justify-content-md-center m-2">
         <a href="<%= edit_gossip_path(params[:id]) %>" class ="btn btn-success">Mettre à jour le potin</a>     
       </div> 
-      <br/>
-      
-      <div class="row justify-content-md-center mb-2">
+            
+      <div class="row justify-content-md-center m-2">
         <a href="<%= gossip_path(params[:id])%>" class ="btn btn-danger" data-confirm="Etes-vous sûr ?" data-method="DELETE">Supprimer le potin</a>     
       </div> 
       </br>
@@ -69,12 +68,12 @@
       <p style="font-style: italic"> <%= comment.user.pseudo %> : <%= comment.content %></p>
     </div>
     
-
-    
-    <div class="row justify-content-sm-center">
-      <a href="<%= edit_gossip_comment_path(@gossip_searched.id, comment.id) %>" class ="btn btn-outline-success btn-sm">Mettre à jour le commentaire</a>  
-    </div> 
-    </br>
+    <% if comment.user == current_user %>
+      <div class="row justify-content-sm-center">
+        <a href="<%= edit_gossip_comment_path(@gossip_searched.id, comment.id) %>" class ="btn btn-outline-success btn-sm">Mettre à jour le commentaire</a>  
+      </div> 
+      </br>
+      <% end %>
   <% end %>
 </body>
 </html>

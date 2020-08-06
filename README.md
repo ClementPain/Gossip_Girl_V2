@@ -1,4 +1,4 @@
-# The Gossip Project : l'application qui déchire!
+s# The Gossip Project : l'application qui déchire!
 
 Bonjour,
 
@@ -23,7 +23,7 @@ Pour faire fonctionner le site, dans le dossier de l'application faire dans le t
 
 Enfin lancer sur votre navigateur: localhost:3000/gossips/
 
-Pour profiter pleinement notre site de portins, l'inscription est obligatoire.
+Pour profiter pleinement de notre site de potins, l'inscription est obligatoire.
 
 # ENJOY IT!
 

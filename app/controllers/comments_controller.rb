@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  before_action :authenticate_current_user, only: [:edit, :update, :destroy]
+
   def new
     unless current_user
       redirect_to gossip_path(params[:gossip_id]), alert: "Please log in."
@@ -47,5 +50,13 @@ class CommentsController < ApplicationController
   end
 
   def index
+  end
+
+  private
+
+  def authenticate_current_user
+    unless current_user == Comment.find(params[:id]).user
+      redirect_to gossip_path(params[:gossip_id]), alert: "Vous ne pouvez pas modifier ce commentaire"
+    end
   end
 end
