@@ -32,10 +32,17 @@
       <% end %>
       </p>
 
-      <p>Likes :
-        <%= @gossip_searched.likes.count %>
+      <p><%= @gossip_searched.likes.count %> <%= (@gossip_searched.likes.count) == 1 ? 'Like' : 'Likes'%> 
+        <% pre_like = @gossip_searched.likes.find { |like| like.user_id == current_user.id} %>
+        <% if pre_like %>
+          <%= button_to 'Unlike', gossip_like_path(@gossip_searched, pre_like), method: :delete %>
+        <% else %>
+          <%= button_to 'Like', gossip_likes_path(@gossip_searched), method: :post %>
+        <% end %>
       </p>
     </div>
+
+        
 
   <!-- Boutons gestion potin -->
     <div class="row justify-content-md-center mb-2">
