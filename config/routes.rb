@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy, :show]
 
-  post '/gossips/:id/edit', to: 'gossips#edit'
   resources :cities, only: [:show]
 
 end
